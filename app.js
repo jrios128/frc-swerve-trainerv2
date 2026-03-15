@@ -99,6 +99,22 @@ if(time<=0) clearInterval(interval);
 
 }
 
+function drawDefenders(ctx){
+
+ctx.fillStyle="red";
+
+defenders.forEach(bot=>{
+
+ctx.save();
+
+ctx.translate(bot.x,bot.y);
+ctx.fillRect(-20,-20,40,40);
+
+ctx.restore();
+
+});
+
+}
 function resetTimer(){
 clearInterval(interval);
 time = 120;
