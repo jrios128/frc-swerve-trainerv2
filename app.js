@@ -104,3 +104,4 @@ requestAnimationFrame(loop);
 }
 
 loop();
+loop();
