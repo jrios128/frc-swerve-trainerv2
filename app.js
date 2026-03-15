@@ -51,6 +51,31 @@ robot.y += dy;
 
 }
 
+function readGamepad(inputX,inputY){
+
+let gamepads = navigator.getGamepads();
+
+if(!gamepads) return;
+
+let gp = gamepads[0];
+
+if(!gp) return;
+
+let deadzone = 0.1;
+
+let lx = gp.axes[0];
+let ly = gp.axes[1];
+let rx = gp.axes[2];
+
+if(Math.abs(lx)>deadzone) inputX = lx;
+if(Math.abs(ly)>deadzone) inputY = ly;
+
+if(Math.abs(rx)>deadzone){
+robot.angle += rx*0.05;
+}
+
+}
+
 function draw(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -86,28 +111,3 @@ requestAnimationFrame(loop);
 
 loop();
 
-
-function readGamepad(inputX,inputY){
-
-let gamepads = navigator.getGamepads();
-
-if(!gamepads) return;
-
-let gp = gamepads[0];
-
-if(!gp) return;
-
-let deadzone = 0.1;
-
-let lx = gp.axes[0];
-let ly = gp.axes[1];
-let rx = gp.axes[2];
-
-if(Math.abs(lx)>deadzone) inputX = lx;
-if(Math.abs(ly)>deadzone) inputY = ly;
-
-if(Math.abs(rx)>deadzone){
-robot.angle += rx*0.05;
-}
-
-}
