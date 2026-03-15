@@ -1,6 +1,6 @@
 console.log("AI bots loaded");
 
-let defenders = [
+let Defenders = [
 {x:300,y:200},
 {x:600,y:300}
 ];
