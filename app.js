@@ -86,6 +86,14 @@ ctx.restore();
 
 }
 
+function drawObstacles()
+{
+ctx.fillstyle="gray";
+  ctx.fillRect(200,200,60,60);
+  ctx.fillRect(600,120,60,60);
+  ctx.fillRect(500,350,80,80);
+}
+
 function loop(){
 
 update();
