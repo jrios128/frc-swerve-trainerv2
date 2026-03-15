@@ -17,19 +17,4 @@ bot.y += dy * 0.01;
 
 }
 
-function drawDefenders(ctx){
 
-ctx.fillStyle="red";
-
-defenders.forEach(bot=>{
-
-ctx.save();
-
-ctx.translate(bot.x,bot.y);
-ctx.fillRect(-20,-20,40,40);
-
-ctx.restore();
-
-});
-
-}
