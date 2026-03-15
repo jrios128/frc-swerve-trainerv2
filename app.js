@@ -114,7 +114,9 @@ ctx.rotate(robot.angle);
 
 ctx.fillStyle="orange";
 ctx.fillRect(-robot.size/2,-robot.size/2,robot.size,robot.size);
-
+ctx.fillStyle="black";
+ctx.fillRect(10,-5,15,10);
+  
 ctx.restore();
 
 }
