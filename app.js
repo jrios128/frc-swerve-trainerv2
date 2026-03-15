@@ -18,6 +18,8 @@ document.addEventListener("keyup", e => keys[e.key]=false);
 
 function update(){
 
+updateDefenders();  
+  
 let speed = 3;
 let rotSpeed = 0.05;
 
