@@ -18,8 +18,6 @@ document.addEventListener("keyup", e => keys[e.key]=false);
 
 function update(){
 
-updateDefenders();  
-  
 let speed = 3;
 let rotSpeed = 0.05;
 
@@ -78,34 +76,6 @@ ctx.fillRect(200,200,60,60);
 ctx.fillRect(600,120,60,60);
 ctx.fillRect(500,350,80,80);
 
-}
-let time = 120;
-let interval;
-
-function startTimer(){
-
-clearInterval(interval);
-
-interval = setInterval(()=>{
-
-time--;
-let min = Math.floor(time/60);
-let sec = time%60;
-
-document.getElementById("timer").innerText =
-`${min}:${sec.toString().padStart(2,'0')}`;
-
-if(time<=0) clearInterval(interval);
-
-},1000);
-
-}
-
-
-function resetTimer(){
-clearInterval(interval);
-time = 120;
-document.getElementById("timer").innerText="2:00";
 }
 
 function loop(){
