@@ -30,7 +30,7 @@ let dist=Math.sqrt(dx*dx+dy*dy)
 
 if(dist<t.r){
 
-score+=5
+score+=1
 
 document.getElementById("score").innerText=score
 
