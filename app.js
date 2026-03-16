@@ -1,66 +1,53 @@
-const canvas = document.getElementById("fieldCanvas");
+const canvas = document.getElementById("field");
 const ctx = canvas.getContext("2d");
 
-canvas.width = 900;
+canvas.width = 800;
 canvas.height = 500;
 
 let robot = {
-x:450,
+x:400,
 y:250,
 angle:0,
-size:40,
-vx:0,
-vy:0
+size:40
 };
 
 let keys = {};
 
-document.addEventListener("keydown",e=>keys[e.key.toLowerCase()]=true);
-document.addEventListener("keyup",e=>keys[e.key.toLowerCase()]=false);
+document.addEventListener("keydown", e => keys[e.key]=true);
+document.addEventListener("keyup", e => keys[e.key]=false);
 
 function update(){
 
-let speed = 0.4;
+let speed = 3;
 let rotSpeed = 0.05;
-
-let inputX = 0;
-let inputY = 0;
-
-if(keys["w"]) inputY -=1;
-if(keys["s"]) inputY +=1;
-if(keys["a"]) inputX -=1;
-if(keys["d"]) inputX +=1;
 
 if(keys["q"]) robot.angle -= rotSpeed;
 if(keys["e"]) robot.angle += rotSpeed;
 
-readGamepad(inputX,inputY);
+let dx=0;
+let dy=0;
 
-let mode = document.getElementById("driveMode").value;
+if(keys["w"]) dy -= speed;
+if(keys["s"]) dy += speed;
+if(keys["a"]) dx -= speed;
+if(keys["d"]) dx += speed;
+
+let mode = document.getElementById("mode").value;
 
 if(mode==="robot"){
-
 let cos = Math.cos(robot.angle);
 let sin = Math.sin(robot.angle);
 
-let rx = inputX*cos - inputY*sin;
-let ry = inputX*sin + inputY*cos;
+let rx = dx*cos - dy*sin;
+let ry = dx*sin + dy*cos;
 
-robot.vx += rx*speed;
-robot.vy += ry*speed;
+robot.x += rx;
+robot.y += ry;
 
 }else{
-
-robot.vx += inputX*speed;
-robot.vy += inputY*speed;
-
+robot.x += dx;
+robot.y += dy;
 }
-
-robot.x += robot.vx;
-robot.y += robot.vy;
-
-robot.vx *= 0.9;
-robot.vy *= 0.9;
 
 }
 
@@ -68,56 +55,33 @@ function draw(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-drawField(ctx,canvas);
+drawObstacles();
 
 ctx.save();
-
 ctx.translate(robot.x,robot.y);
 ctx.rotate(robot.angle);
 
 ctx.fillStyle="orange";
 ctx.fillRect(-robot.size/2,-robot.size/2,robot.size,robot.size);
 
-ctx.fillStyle="black";
-ctx.fillRect(10,-5,15,10);
-
 ctx.restore();
 
 }
 
-function readGamepad(inputX,inputY){
+function drawObstacles(){
 
-let gamepads = navigator.getGamepads();
+ctx.fillStyle="gray";
 
-if(!gamepads) return;
-
-let gp = gamepads[0];
-
-if(!gp) return;
-
-let deadzone = 0.1;
-
-let lx = gp.axes[0];
-let ly = gp.axes[1];
-let rx = gp.axes[2];
-
-if(Math.abs(lx)>deadzone) inputX = lx;
-if(Math.abs(ly)>deadzone) inputY = ly;
-
-if(Math.abs(rx)>deadzone){
-robot.angle += rx*0.05;
-}
+ctx.fillRect(200,200,60,60);
+ctx.fillRect(600,120,60,60);
+ctx.fillRect(500,350,80,80);
 
 }
-
 
 function loop(){
-
 update();
 draw();
-
 requestAnimationFrame(loop);
-
 }
 
 loop();
