@@ -36,3 +36,42 @@ drawObstacle(canvas.width/2-40,180)
 drawObstacle(canvas.width/2+20,300)
 
 }
+
+function drawScoringZone(x,y,color){
+
+ctx.fillStyle=color
+ctx.globalAlpha=0.3
+
+ctx.fillRect(x,y,80,100)
+
+ctx.globalAlpha=1
+
+ctx.strokeStyle=color
+ctx.strokeRect(x,y,80,100)
+
+}
+
+function drawLoadingZone(x,y,color){
+
+ctx.fillStyle=color
+ctx.globalAlpha=0.2
+
+ctx.fillRect(x,y,60,60)
+
+ctx.globalAlpha=1
+
+ctx.strokeStyle=color
+ctx.strokeRect(x,y,60,60)
+
+}
+
+function drawObstacle(x,y){
+
+ctx.fillStyle="#777"
+
+ctx.fillRect(x,y,60,60)
+
+ctx.strokeStyle="black"
+ctx.strokeRect(x,y,60,60)
+
+}
