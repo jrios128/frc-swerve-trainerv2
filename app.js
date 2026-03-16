@@ -10,6 +10,8 @@ readKeyboard()
 
 readGamepad()
 
+readMobileControls()
+  
 updateRobot()
 
 updateDefenders()
