@@ -29,7 +29,14 @@ drawDefenders(ctx);
 drawRobot(ctx);
 
 }
+function getRank(){
 
+if(score>150) return "Elite Driver";
+if(score>80) return "Varsity Driver";
+if(score>30) return "Driver";
+return "Rookie";
+
+}
 function loop(){
 
 update();
