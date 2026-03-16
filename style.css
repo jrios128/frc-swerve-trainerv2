@@ -60,3 +60,16 @@ html, body {
 overflow:hidden;
 touch-action:none;
 }
+@media (max-width: 800px){
+
+.joystick{
+width:110px;
+height:110px;
+}
+
+.stick{
+width:50px;
+height:50px;
+}
+
+}
