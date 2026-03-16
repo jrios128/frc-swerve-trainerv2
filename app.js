@@ -1,49 +1,49 @@
+const canvas = document.getElementById("field")
+const ctx = canvas.getContext("2d")
+
+canvas.width = 900
+canvas.height = 500
+
 function update(){
 
-readGamepad();
+readKeyboard()
 
-updateDefenders();
+readGamepad()
 
-handleCollisions();
+updateRobot()
 
-checkTargets();
+updateDefenders()
 
-robot.x += robot.vx;
-robot.y += robot.vy;
+handleCollisions()
 
-robot.vx *= .9;
-robot.vy *= .9;
+checkTargets()
 
 }
 
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(0,0,canvas.width,canvas.height)
 
-drawField(ctx,canvas);
+drawField(ctx,canvas)
 
-drawTargets(ctx);
+drawTargets(ctx)
 
-drawDefenders(ctx);
+drawDefenders(ctx)
 
-drawRobot(ctx);
+drawRobot(ctx)
 
-}
-function getRank(){
-
-if(score>150) return "Elite Driver";
-if(score>80) return "Varsity Driver";
-if(score>30) return "Driver";
-return "Rookie";
+drawScore()
 
 }
+
 function loop(){
 
-update();
-draw();
+update()
 
-requestAnimationFrame(loop);
+draw()
+
+requestAnimationFrame(loop)
 
 }
 
-loop();
+loop()
