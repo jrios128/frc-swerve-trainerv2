@@ -1,11 +1,31 @@
-let joyX = 0;
-let joyY = 0;
+let keys={}
 
-document.addEventListener("touchmove",function(e){
+document.addEventListener("keydown",e=>keys[e.key.toLowerCase()]=true)
+document.addEventListener("keyup",e=>keys[e.key.toLowerCase()]=false)
 
-let touch = e.touches[0];
+function readKeyboard(){
 
-joyX = (touch.clientX - window.innerWidth/2)/150;
-joyY = (touch.clientY - window.innerHeight/2)/150;
+let speed=0.5
+let rot=0.05
 
-});
+if(keys["w"]) robot.vy-=speed
+if(keys["s"]) robot.vy+=speed
+if(keys["a"]) robot.vx-=speed
+if(keys["d"]) robot.vx+=speed
+
+if(keys["q"]) robot.angle-=rot
+if(keys["e"]) robot.angle+=rot
+
+}
+
+function readGamepad(){
+
+let gp = navigator.getGamepads()[0]
+
+if(!gp) return
+
+robot.vx += gp.axes[0]*0.6
+robot.vy += gp.axes[1]*0.6
+robot.angle += gp.axes[2]*0.05
+
+}
