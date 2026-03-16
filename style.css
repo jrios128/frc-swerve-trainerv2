@@ -55,3 +55,8 @@ padding:10px;
 font-size:14px;
 opacity:.8;
 }
+
+html, body {
+overflow:hidden;
+touch-action:none;
+}
