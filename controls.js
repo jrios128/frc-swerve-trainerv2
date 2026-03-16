@@ -1,3 +1,7 @@
+document.body.addEventListener("touchmove",function(e){
+e.preventDefault()
+},{passive:false})
+
 let keys={}
 
 document.addEventListener("keydown",e=>keys[e.key.toLowerCase()]=true)
@@ -64,6 +68,7 @@ stick.style.top="40px"
 })
 
 joystick.addEventListener("touchmove",e=>{
+  e.preventDefault()
 
 if(!active) return
 
