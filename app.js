@@ -1,53 +1,18 @@
-const canvas = document.getElementById("field");
-const ctx = canvas.getContext("2d");
-
-canvas.width = 800;
-canvas.height = 500;
-
-let robot = {
-x:400,
-y:250,
-angle:0,
-size:40
-};
-
-let keys = {};
-
-document.addEventListener("keydown", e => keys[e.key]=true);
-document.addEventListener("keyup", e => keys[e.key]=false);
-
 function update(){
 
-let speed = 3;
-let rotSpeed = 0.05;
+readGamepad();
 
-if(keys["q"]) robot.angle -= rotSpeed;
-if(keys["e"]) robot.angle += rotSpeed;
+updateDefenders();
 
-let dx=0;
-let dy=0;
+handleCollisions();
 
-if(keys["w"]) dy -= speed;
-if(keys["s"]) dy += speed;
-if(keys["a"]) dx -= speed;
-if(keys["d"]) dx += speed;
+checkTargets();
 
-let mode = document.getElementById("mode").value;
+robot.x += robot.vx;
+robot.y += robot.vy;
 
-if(mode==="robot"){
-let cos = Math.cos(robot.angle);
-let sin = Math.sin(robot.angle);
-
-let rx = dx*cos - dy*sin;
-let ry = dx*sin + dy*cos;
-
-robot.x += rx;
-robot.y += ry;
-
-}else{
-robot.x += dx;
-robot.y += dy;
-}
+robot.vx *= .9;
+robot.vy *= .9;
 
 }
 
@@ -55,33 +20,23 @@ function draw(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-drawObstacles();
+drawField(ctx,canvas);
 
-ctx.save();
-ctx.translate(robot.x,robot.y);
-ctx.rotate(robot.angle);
+drawTargets(ctx);
 
-ctx.fillStyle="orange";
-ctx.fillRect(-robot.size/2,-robot.size/2,robot.size,robot.size);
+drawDefenders(ctx);
 
-ctx.restore();
-
-}
-
-function drawObstacles(){
-
-ctx.fillStyle="gray";
-
-ctx.fillRect(200,200,60,60);
-ctx.fillRect(600,120,60,60);
-ctx.fillRect(500,350,80,80);
+drawRobot(ctx);
 
 }
 
 function loop(){
+
 update();
 draw();
+
 requestAnimationFrame(loop);
+
 }
 
 loop();
