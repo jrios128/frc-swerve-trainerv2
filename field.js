@@ -1,3 +1,8 @@
+let obstacles = [
+{x:420,y:180},
+{x:500,y:300}
+]
+
 function drawField(ctx,canvas){
 
 const margin = 20
