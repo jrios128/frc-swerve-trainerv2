@@ -1,40 +1,28 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<meta charset="UTF-8">
-<title>FRC Swerve Driver Trainer</title>
+<title>Swerve Driver Trainer</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="topbar">
-
-<select id="driveMode">
+<select id="mode">
 <option value="field">Field Oriented</option>
 <option value="robot">Robot Oriented</option>
 </select>
 
 <div id="timer">2:00</div>
+</div>
+
+<canvas id="field"></canvas>
 
 <div class="controls">
 <button onclick="startTimer()">Start</button>
 <button onclick="resetTimer()">Reset</button>
 </div>
 
-</div>
-
-<canvas id="fieldCanvas"></canvas>
-
-<div class="help">
-WASD = Translate |
-Q/E = Rotate |
-Xbox Controller Supported
-</div>
-
-<script src="field.js"></script>
 <script src="app.js"></script>
-
 </body>
 </html>
