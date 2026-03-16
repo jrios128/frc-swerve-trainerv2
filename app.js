@@ -1,8 +1,16 @@
 const canvas = document.getElementById("field")
 const ctx = canvas.getContext("2d")
 
-canvas.width = 900
-canvas.height = 500
+function resizeCanvas(){
+
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight * 0.6
+
+}
+
+resizeCanvas()
+
+window.addEventListener("resize", resizeCanvas)
 
 function update(){
 
