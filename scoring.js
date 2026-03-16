@@ -33,5 +33,7 @@ score += 5;
 }
 
 });
-
+ctx.fillStyle="white";
+ctx.font="24px Arial";
+ctx.fillText("Score: "+score,20,30);
 }
