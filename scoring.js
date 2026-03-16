@@ -1,21 +1,21 @@
-let score = 0;
+let score=0
 
-let targets = [
+let targets=[
 {x:120,y:250,r:40},
 {x:780,y:250,r:40}
-];
+]
 
 function drawTargets(ctx){
 
-ctx.fillStyle="yellow";
+ctx.fillStyle="yellow"
 
 targets.forEach(t=>{
 
-ctx.beginPath();
-ctx.arc(t.x,t.y,t.r,0,Math.PI*2);
-ctx.fill();
+ctx.beginPath()
+ctx.arc(t.x,t.y,t.r,0,Math.PI*2)
+ctx.fill()
 
-});
+})
 
 }
 
@@ -23,17 +23,27 @@ function checkTargets(){
 
 targets.forEach(t=>{
 
-let dx = robot.x - t.x;
-let dy = robot.y - t.y;
+let dx=robot.x-t.x
+let dy=robot.y-t.y
 
-if(Math.sqrt(dx*dx+dy*dy) < t.r){
+let dist=Math.sqrt(dx*dx+dy*dy)
 
-score += 5;
+if(dist<t.r){
+
+score+=5
+
+document.getElementById("score").innerText=score
 
 }
 
-});
-ctx.fillStyle="white";
-ctx.font="24px Arial";
-ctx.fillText("Score: "+score,20,30);
+})
+
+}
+
+function drawScore(){
+
+ctx.fillStyle="white"
+ctx.font="20px Arial"
+ctx.fillText("Score: "+score,20,30)
+
 }
