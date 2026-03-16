@@ -52,6 +52,7 @@ robot.y += dy;
 }
 let time = 120;
 let interval;
+readGamepad(inputX,inputY);
 
 function readGamepad(inputX,inputY){
 
@@ -136,7 +137,7 @@ ctx.save();
 ctx.translate(robot.x,robot.y);
 ctx.rotate(robot.angle);
 
-ctx.fillStyle="orange";
+ctx.fillStyle="orange";   
 ctx.fillRect(-robot.size/2,-robot.size/2,robot.size,robot.size);
 ctx.fillStyle="black";
 ctx.fillRect(10,-5,15,10);
